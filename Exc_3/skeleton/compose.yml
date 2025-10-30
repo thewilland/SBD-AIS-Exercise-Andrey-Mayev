@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    env_file: 
+      - debug.env
+    stdin_open: true
+    depends_on: 
+      - postgres
+
+  postgres:
+    image: postgres:18
+    volumes: 
+      - pgdata:/var/lib/postgresql/18/docker
+    env_file: 
+      - debug.env
+    ports: 
+      - 5433:5432
+
+volumes: 
+  pgdata:
