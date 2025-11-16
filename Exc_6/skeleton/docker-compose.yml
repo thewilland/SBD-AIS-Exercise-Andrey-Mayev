@@ -6,6 +6,7 @@ networks:
 
 volumes:
   order_pg_vol:
+  order_s3_vol:
   # todo
 
 services:
@@ -81,8 +82,19 @@ services:
 
   order-minio:
     # todo use minio/minio:latest as image
+    image: minio/minio:latest
     # expose 8500
+    ports:
+      - "8500:8500"
     # add to network intercom
+    networks:
+      - intercom
     # use the following commands: "server", "--address", ":8500", "/data"
+    command: ["server", "--address", ":8500", "/data"]
     # map the data volume
+    volumes:
+      - order_s3_vol:/data
     # set environment variables MINIO_ROOT_USER and MINIO_ROOT_PASSWORD
+    environment:
+      - MINIO_ROOT_USER=root
+      - MINIO_ROOT_PASSWORD=verysecret

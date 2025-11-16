@@ -29,9 +29,9 @@ func Prepopulate(db *DatabaseHandler, s3 *minio.Client) error {
 	slog.Info("Prepopulating database and S3")
 	// create drink menu
 	drinks := []model.Drink{
-		{Name: "Beer", Price: 2.0, Description: "Hagenberger Gold"},
-		{Name: "Spritzer", Price: 1.4, Description: "Wine with soda"},
-		{Name: "Coffee", Price: 0.0, Description: "Mifare isn't that secure ;)"},
+		{Name: "Water", Price: 1.80, Description: "Yay water"},
+		{Name: "Evil Water", Price: 6.66, Description: "AAAA OH NO"},
+		{Name: "Leaf Water Hot", Price: 2.80, Description: "Oh that's tea mmmm AAAAA HOT OH NO"},
 	}
 	err = db.dbConn.Create(drinks).Error
 	if err != nil {
